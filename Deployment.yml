@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: mrdevops
+spec:
+   replicas: 2
+   selector:      # tells the controller which pods to watch/belong to
+    matchLabels:
+     app: mrdevops
+   template:
+      metadata:
+        labels:
+          app: mrdevops
+      spec:
+       
+       containers:
+        - name: mrdevops
+          image: anantgarg123/pipeline-demo:latest
+          imagePullPolicy: Always
+          command: [ "/bin/bash", "-c", "--" ]
+          args: [ "while true; do sleep 30; done;" ]
+          ports:
+          - containerPort: 80 
+            
+            
